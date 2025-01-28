@@ -20,4 +20,8 @@ public class OrderPublishConfig extends PubSubBaseConfig{
         pubSubTemplate.setMessageConverter(createJacksonPubSubMessageConverter());
         return pubSubTemplate;
     }
+    @Bean("orderSubTemplate")
+    public PubSubTemplate orderSubTemplate(){
+        return new PubSubTemplate(createPublisherFactory(), createSubscriberFactory());
+    }
 }
