@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: ${PROFILE}
+logging:
+  level:
+    root: WARN
+bucket_name: temp-ecom-bucket
+dataflow:
+  gcpProject: cloudnativeecomapp
+  network: default
+  subnetwork: default
+  serviceAccount: ecom-poc-service-account@cloudnativeecomapp.iam.gserviceaccount.com
+  region: asia-south1
+  workZone: asia-south1-a
+  usePublicIPs: false
+  spannerProjectId: cloudnativeecomappc
+  spannerDatasetId: ecom-db-poc
+  spannerTableId: ecom-db
+  spannerFailureMode: REPORT_FAILURES
+  minSpannerSessions: 25
+  maxSpannerSessions: 50
+  numberWorkers: 1
+  maxNumWorkers: 5
+  workerMachineType: e2-medium
+  workerCacheMb: 10000
+  batchSizeInBytes: 20000000
+  gcpTempLocation: gs://${bucket_name}/template/
+  loggerMap:
+    org.springframework: WARN
+    org.apache.beam: WARN
+    com.opencv: WARN
+    io.grpc: WARN
+  replication:
+    handleDuplicateFailure: true
+    subscriptionName: projects/bagtemppubsub/subscriptions/order.message.publisher-sub
+    topicName: projects/bagtemppubsub/topics/order.message.publisher
+  migration:
+    numWorkers: 1
+    maxNumWorkers: 500
+    entityCSVHeaderMap:
+      ORDER: ORDER_NUMBER~ORDER_PK
+
+
+

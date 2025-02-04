@@ -1,0 +1,15 @@
+dataflow:
+  gcpProject: cloudnativeecomapp
+  network: default
+  subnetwork: default-subnet-us-central1
+  serviceAccount: ecom-poc-service-account@cloudnativeecomapp.iam.gserviceaccount.com
+  region: us-central1
+  workZone: us-central1-1
+  usePublicIPs: false
+  spannerProjectId: cloudnativeecomappc
+  spannerDatasetId: ecom-db-poc
+  spannerTableId: ecom-db
+  replication:
+    subscriptionName: projects/bagtemppubsub/subscriptions/order.message.publisher-sub
+    topicName: projects/bagtemppubsub/topics/order.message.publisher
+
